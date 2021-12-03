@@ -31,6 +31,18 @@ module.exports = {
             'less-loader'
         ]
       },
+      {  
+        test: /\.(woff|eot|ttf|svg|png|jpg)$/,  
+        use: [  
+            {  
+                loader: 'url-loader',  
+                options: {  
+                    limit: '10240' ,
+                    name: '[name].[hash:4].[ext]'  
+                }                        
+            },  
+        ]  
+      },
     ]
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },
@@ -48,5 +60,8 @@ module.exports = {
     hot: true,
   },
 //   plugins: [new webpack.HotModuleReplacementPlugin()]
-  plugins: [isDevelopment && new ReactRefreshWebpackPlugin()].filter(Boolean),
+  plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+  ].filter(Boolean),
 };

@@ -1,8 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 import './style.less'
 
-const Button = ()=>{
-    return <button className="btn">我是一个按钮</button>
+const Button = ({title})=>{
+    return <button className="btn">{title}</button>
+}
+
+Button.defaultProps = {
+    title: 'majy'
+}
+
+Button.propTypes = {
+    title: PropTypes.string
 }
 
 export default Button;
